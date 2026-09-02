@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="js/boot.js"></script>
+<script src="js/data.js"></script>
+<script src="js/shell.js"></script>
+<title>공무원 AI · 메인 홈</title>
+<meta name="description" content="9급 공무원 시험 대비 AI 문제풀이 학습 플랫폼" />
+<meta name="theme-color" content="#1b2130" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🎓</text></svg>" />
+<style>
+  @view-transition{navigation:auto}
+  html,body{height:100%;margin:0}
+  body:has(.layout){overflow:hidden}
+  .topbar{position:fixed;top:0;left:0;right:0;height:46px;z-index:40;view-transition-name:shell-topbar}
+  .layout{display:grid;grid-template-columns:252px minmax(0,1fr);width:100%;height:calc(100% - 46px);margin-top:46px;overflow:hidden}
+  .sidebar{width:252px;min-width:252px;max-width:252px;view-transition-name:shell-sidebar}
+  .main{height:100%;min-width:0;overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable}
+</style>
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/shell.css" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" /></noscript>
+</head>
+<body data-active-nav="home">
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<!-- ── 상단 바 ───────────────────────────────────────── -->
+<header class="topbar">
+  <button class="topbar__menu" type="button" id="sidebarToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+  </button>
+  <span class="topbar__dot" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4" /><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0" /></svg>
+  </span>
+  <h1 class="topbar__title">메인 홈</h1>
+  <div class="topbar__spacer"></div>
+  <div class="topbar__auth" id="topbarAuth">
+    <a class="topbar__btn topbar__btn--ghost" href="login.html">로그인</a>
+    <a class="topbar__btn topbar__btn--primary" href="signup.html">회원가입</a>
+  </div>
+  <button class="topbar__icon" type="button" data-action="알림" aria-label="알림">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V10a6 6 0 1 1 12 0v6l1.5 2.5H4.5L6 16Z" /><path d="M10 19.5a2 2 0 0 0 4 0" /></svg>
+    <span class="topbar__badge">3</span>
+  </button>
+</header>
+
+<div class="layout">
+  <!-- ── 사이드바 ────────────────────────────────────── -->
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="sidebar" id="sidebar" aria-label="주요 메뉴">
+    <div class="brand">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M2.5 8.5 12 4.5l9.5 4-9.5 4-9.5-4Z" /><path d="M6.5 11v5.2c0 1.3 2.5 2.3 5.5 2.3s5.5-1 5.5-2.3V11" /><path d="M20.5 9.6v5.1" /></svg>
+      </span>
+      <div class="brand__copy">
+        <span class="brand__text"><b>AI</b> 9급 합격 코치</span>
+        <p class="brand__sub">내가 틀리는 문제만 찾아서<br />가르쳐주는 AI 공무원 선생님</p>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="학습 메뉴">
+      <script>
+        document.write(Shell.navMarkup('home'));
+        Shell.boot('home');
+      </script>
+    </nav>
+
+    <div class="sidebar__foot">
+      <button class="nav__link nav__link--quiet" type="button" data-action="로그아웃">
+        <svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h3.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H15" /><path d="M10 8l-4 4 4 4M6 12h9" /></svg>
+        <span>로그아웃</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── 본문 ────────────────────────────────────────── -->
+  <main class="main" id="main">
+    <!-- 히어로 -->
+    <section class="hero">
+      <div class="hero__copy">
+        <h2 class="hero__title">오늘도 합격을 향한 한 걸음 더!</h2>
+        <p class="hero__sub">AI가 당신의 학습을 분석하고, 합격까지 함께합니다.</p>
+      </div>
+
+      <div class="hero__mascot">
+        <p class="bubble">AI 선생님이<br />도와드릴게요!</p>
+        <!-- 마스코트 -->
+        <svg class="robot" viewBox="0 0 260 230" role="img" aria-label="책을 든 AI 로봇 캐릭터">
+          <ellipse cx="132" cy="214" rx="76" ry="11" fill="#0b1c3f" opacity=".08" />
+          <!-- 안테나 -->
+          <path d="M130 26V12" stroke="#16233d" stroke-width="5" stroke-linecap="round" />
+          <circle cx="130" cy="9" r="7" fill="#54e2ff" stroke="#16233d" stroke-width="4" />
+          <!-- 귀 -->
+          <rect x="56" y="62" width="16" height="30" rx="8" fill="#9fbbe8" stroke="#16233d" stroke-width="4" />
+          <rect x="188" y="62" width="16" height="30" rx="8" fill="#9fbbe8" stroke="#16233d" stroke-width="4" />
+          <!-- 머리 -->
+          <rect x="66" y="26" width="128" height="98" rx="30" fill="#dce8fb" stroke="#16233d" stroke-width="4.5" />
+          <rect x="82" y="44" width="96" height="62" rx="22" fill="#16233d" />
+          <ellipse cx="110" cy="74" rx="11" ry="13" fill="#54e2ff" />
+          <ellipse cx="150" cy="74" rx="11" ry="13" fill="#54e2ff" />
+          <circle cx="113" cy="69" r="3.4" fill="#eafcff" />
+          <circle cx="153" cy="69" r="3.4" fill="#eafcff" />
+          <path d="M120 92q10 7 20 0" stroke="#54e2ff" stroke-width="4" stroke-linecap="round" fill="none" />
+          <!-- 목 · 몸통 -->
+          <rect x="118" y="120" width="24" height="14" fill="#16233d" />
+          <rect x="74" y="130" width="112" height="76" rx="28" fill="#2f6bff" stroke="#16233d" stroke-width="4.5" />
+          <rect x="106" y="146" width="48" height="24" rx="10" fill="#ffffff" opacity=".28" />
+          <!-- 팔 -->
+          <path d="M74 156q-22 6-24 30" stroke="#16233d" stroke-width="16" stroke-linecap="round" fill="none" />
+          <path d="M74 156q-22 6-24 30" stroke="#2f6bff" stroke-width="9" stroke-linecap="round" fill="none" />
+          <path d="M186 156q22 6 24 30" stroke="#16233d" stroke-width="16" stroke-linecap="round" fill="none" />
+          <path d="M186 156q22 6 24 30" stroke="#2f6bff" stroke-width="9" stroke-linecap="round" fill="none" />
+          <!-- 책 -->
+          <g>
+            <path d="M130 178q-34-16-74-8v34q40-8 74 8Z" fill="#ffffff" stroke="#16233d" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M130 178q34-16 74-8v34q-40-8-74 8Z" fill="#eef4ff" stroke="#16233d" stroke-width="4.5" stroke-linejoin="round" />
+            <path d="M130 178v34" stroke="#16233d" stroke-width="4.5" />
+            <path d="M70 180h40M70 190h40M150 180h40M150 190h40" stroke="#9fbbe8" stroke-width="4" stroke-linecap="round" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 과목별 문제 -->
+    <section class="block" aria-labelledby="subjectsTitle">
+      <div class="block__head">
+        <h3 class="block__title" id="subjectsTitle">오늘 어떤 문제를 풀어볼까요?</h3>
+        <button class="block__more" type="button" data-action="전체 과목 보기">전체 보기 →</button>
+      </div>
+      <div class="grid grid--subjects" id="subjectGrid"></div>
+    </section>
+
+    <!-- 학습 도구 -->
+    <section class="block" aria-labelledby="toolsTitle">
+      <h3 class="block__title sr-only" id="toolsTitle">학습 도구</h3>
+      <div class="grid grid--features" id="featureGrid"></div>
+    </section>
+
+    <!-- 하단 배너 -->
+    <section class="promo">
+      <div class="promo__text">
+        <p class="promo__eyebrow">누적 학습자 12만 명</p>
+        <h3 class="promo__title">합격자들이 선택한 공무원 AI 문제풀이</h3>
+        <p class="promo__sub">기출 분석부터 오답 관리까지, 합격에 필요한 모든 학습을 한곳에서.</p>
+      </div>
+      <a class="promo__cta" href="billing.html">이용권 자세히 보기</a>
+    </section>
+
+    <footer class="footer">
+      <p>© 2026 공무원 AI · 9급 공무원 시험 대비 학습 플랫폼</p>
+      <nav class="footer__links" aria-label="약관">
+        <button type="button" data-action="이용약관">이용약관</button>
+        <button type="button" data-action="개인정보처리방침">개인정보처리방침</button>
+        <button type="button" data-action="고객센터">고객센터</button>
+      </nav>
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
